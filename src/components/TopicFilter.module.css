@@ -1,0 +1,103 @@
+/**
+ * TopicFilter 컴포넌트 스타일
+ * TopicType별 필터링 버튼 그룹
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.filterGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+}
+
+.filterButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2) var(--spacing-4);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.filterButton:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+}
+
+.filterButton:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.filterButtonActive {
+  color: var(--color-text-inverse);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.filterButtonActive:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  color: var(--color-text-inverse);
+}
+
+/* Topic type-specific active states */
+.filterButtonConsult {
+  background-color: var(--color-topic-consult);
+  border-color: var(--color-topic-consult);
+  color: var(--color-text-inverse);
+}
+
+.filterButtonConsult:hover {
+  background-color: var(--color-topic-consult);
+  border-color: var(--color-topic-consult);
+  color: var(--color-text-inverse);
+  opacity: 0.9;
+}
+
+.filterButtonFeed {
+  background-color: var(--color-topic-feed);
+  border-color: var(--color-topic-feed);
+  color: var(--color-text-inverse);
+}
+
+.filterButtonFeed:hover {
+  background-color: var(--color-topic-feed);
+  border-color: var(--color-topic-feed);
+  color: var(--color-text-inverse);
+  opacity: 0.9;
+}
+
+.filterButtonRequest {
+  background-color: var(--color-topic-request);
+  border-color: var(--color-topic-request);
+  color: var(--color-text-inverse);
+}
+
+.filterButtonRequest:hover {
+  background-color: var(--color-topic-request);
+  border-color: var(--color-topic-request);
+  color: var(--color-text-inverse);
+  opacity: 0.9;
+}
+
+.emptyMessage {
+  padding: var(--spacing-6);
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+}

@@ -1,0 +1,311 @@
+/* ─── TopicForm Modern Styles ─── */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  max-width: 640px;
+  padding: var(--spacing-8);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+.required {
+  color: var(--color-error);
+  margin-left: 2px;
+}
+
+/* ─── Inputs ─── */
+
+.input,
+.textarea,
+.select {
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  background-color: var(--color-bg-secondary);
+  transition: all var(--transition-fast);
+}
+
+.input:hover,
+.textarea:hover {
+  border-color: var(--color-border-strong);
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background-color: var(--color-bg);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.inputError {
+  border-color: var(--color-error);
+  background-color: var(--color-error-light);
+}
+
+.inputError:focus {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: var(--line-height-relaxed);
+}
+
+/* ─── Character Count ─── */
+
+.charCount {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.charCountWarning {
+  color: var(--color-warning);
+}
+
+.charCountError {
+  color: var(--color-error);
+  font-weight: var(--font-weight-medium);
+}
+
+/* ─── Error Message ─── */
+
+.errorMessage {
+  font-size: var(--font-size-xs);
+  color: var(--color-error);
+  font-weight: var(--font-weight-medium);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.errorMessage::before {
+  content: "⚠";
+  font-size: 0.7rem;
+}
+
+/* ─── Radio Group (Pill Style) ─── */
+
+.radioGroup {
+  display: flex;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-1);
+  flex-wrap: wrap;
+}
+
+.radioLabel {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-2) var(--spacing-4);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.radioLabel:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+}
+
+.radioLabel input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radioLabel:has(input:checked) {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+
+.radioLabel:has(input:focus-visible) {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ─── Checkbox ─── */
+
+.checkboxLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: var(--spacing-2) 0;
+}
+
+.checkboxLabel input[type="checkbox"] {
+  appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.checkboxLabel input[type="checkbox"]:checked {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.checkboxLabel input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkboxLabel input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ─── Submit Button ─── */
+
+.submitButton {
+  padding: var(--spacing-3) var(--spacing-6);
+  background: linear-gradient(135deg, var(--color-primary) 0%, #4f46e5 100%);
+  color: var(--color-text-inverse);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  align-self: flex-start;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+  letter-spacing: -0.01em;
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+
+.submitButton:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(37, 99, 235, 0.3);
+}
+
+.submitButton:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ─── Messages ─── */
+
+.successMessage {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-4);
+  background-color: var(--color-success-light);
+  color: var(--color-success);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  border: 1px solid rgba(22, 163, 74, 0.2);
+}
+
+.successMessage::before {
+  content: "✓";
+  font-weight: bold;
+}
+
+.warningMessage {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-4);
+  background-color: var(--color-warning-light);
+  color: var(--color-warning);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.warningMessage::before {
+  content: "⚠";
+}
+
+/* ─── Responsive ─── */
+
+@media (max-width: 767px) {
+  .form {
+    padding: var(--spacing-5);
+    gap: var(--spacing-5);
+    border-radius: var(--radius-lg);
+  }
+
+  .radioGroup {
+    gap: var(--spacing-2);
+  }
+
+  .radioLabel {
+    padding: var(--spacing-2) var(--spacing-3);
+    font-size: var(--font-size-xs);
+  }
+
+  .submitButton {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}

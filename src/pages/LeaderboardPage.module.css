@@ -1,0 +1,247 @@
+/* ─── Leaderboard Page Styles ─── */
+
+.container {
+  max-width: 900px;
+  margin-inline: auto;
+  padding: var(--spacing-6) var(--spacing-4);
+}
+
+.pageTitle {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  margin-bottom: var(--spacing-8);
+  color: var(--color-text);
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-6);
+}
+
+/* ─── Category Card ─── */
+
+.categoryCard {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-5);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: box-shadow var(--transition-fast);
+}
+
+.categoryCard:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.categoryHeader {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-4);
+  padding-bottom: var(--spacing-3);
+  border-bottom: 2px solid var(--color-border);
+  color: var(--color-text);
+}
+
+/* ─── Rank List ─── */
+
+.rankList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.rankItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.rankItem:hover {
+  background-color: var(--color-bg-secondary);
+}
+
+/* ─── Gold (#1) Highlight ─── */
+
+.rankGold {
+  background: linear-gradient(135deg, #fef9c3 0%, #fde68a 50%, #fcd34d 100%);
+  border: 1px solid #f59e0b;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
+  transform: scale(1.02);
+}
+
+.rankGold:hover {
+  background: linear-gradient(135deg, #fef9c3 0%, #fde68a 50%, #fcd34d 100%);
+  transform: scale(1.03);
+}
+
+/* ─── Silver (#2) ─── */
+
+.rankSilver {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  border: 1px solid #94a3b8;
+}
+
+/* ─── Bronze (#3) ─── */
+
+.rankBronze {
+  background: linear-gradient(135deg, #fef3e2 0%, #fed7aa 100%);
+  border: 1px solid #d97706;
+}
+
+/* ─── Rank Medal ─── */
+
+.rankMedal {
+  font-size: 1.5rem;
+  min-width: 2rem;
+  text-align: center;
+}
+
+.rankNumber {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-secondary);
+  min-width: 2rem;
+  text-align: center;
+}
+
+/* ─── Avatar ─── */
+
+.avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  border: 2px solid var(--color-bg);
+  box-shadow: 0 0 0 1px var(--color-border);
+  flex-shrink: 0;
+}
+
+.avatarGold {
+  border: 2px solid #f59e0b;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.3);
+}
+
+/* ─── Username ─── */
+
+.username {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ─── Score ─── */
+
+.score {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-secondary);
+  background: var(--color-bg-tertiary);
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.scoreGold {
+  background: rgba(245, 158, 11, 0.15);
+  color: #92400e;
+}
+
+/* ─── Empty State ─── */
+
+.emptyMessage {
+  text-align: center;
+  padding: var(--spacing-6);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+/* ─── Loading & Error ─── */
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-12);
+}
+
+.errorContainer {
+  text-align: center;
+  padding: var(--spacing-8);
+  color: var(--color-error);
+}
+
+/* ─── Nav Link ─── */
+
+.navLink {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.navLink:hover {
+  color: var(--color-primary);
+  background-color: var(--color-bg-secondary);
+}
+
+/* ─── Animations ─── */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.categoryCard {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.categoryCard:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.categoryCard:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+/* ─── Responsive ─── */
+
+@media (min-width: 768px) {
+  .container {
+    padding: var(--spacing-8) var(--spacing-6);
+  }
+
+  .pageTitle {
+    font-size: 2rem;
+  }
+
+  .categories {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-8);
+  }
+}
+
+@media (min-width: 1024px) {
+  .categories {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

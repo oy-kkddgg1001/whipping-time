@@ -1,0 +1,38 @@
+/**
+ * Global Styles
+ * - Imports tokens and reset
+ * - Responsive layout utilities
+ * - Common element styles
+ */
+
+@import './tokens.css';
+@import './reset.css';
+
+/* ========== Root Container ========== */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========== Responsive Container ========== */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+  padding-inline: var(--spacing-4);
+}
+
+/* Mobile (360px+) */
+@media (min-width: 360px) {
+  .container {
+    padding-inline: var(--spacing-4);
+  }
+}
+
+/* Desktop (768px+) */
+@media (min-width: 768px) {
+  .container {
+    padding-inline: var(--spacing-8);
+  }
+}

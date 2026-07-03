@@ -1,0 +1,29 @@
+/**
+ * Layout Component Styles
+ * - Max-width container, centered
+ * - Responsive breakpoints (360px mobile, 768px desktop)
+ * - Flex column to fill viewport
+ */
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+  padding-inline: var(--spacing-4);
+  padding-block: var(--spacing-6);
+}
+
+/* Desktop (768px+) */
+@media (min-width: 768px) {
+  .main {
+    padding-inline: var(--spacing-8);
+    padding-block: var(--spacing-8);
+  }
+}
