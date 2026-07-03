@@ -46,6 +46,19 @@ function HomePage() {
     );
   }
 
+  if (error && !isAuthenticated) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.stateContainer}>
+          <p className={styles.stateTitle}>🔐 로그인이 필요합니다</p>
+          <p className={styles.stateDescription}>
+            챕터 목록을 보려면 GitHub 계정으로 로그인해주세요.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   if (error) {
     return (
       <div className={styles.container}>
