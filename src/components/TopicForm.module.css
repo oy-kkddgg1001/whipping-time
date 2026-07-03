@@ -162,6 +162,87 @@
   outline-offset: 2px;
 }
 
+/* ─── Type Card Group ─── */
+
+.typeCardGroup {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-2);
+}
+
+.typeCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-1);
+  padding: var(--spacing-4) var(--spacing-3);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-bg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+  user-select: none;
+}
+
+.typeCard:hover {
+  border-color: var(--color-border-strong);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+.typeCard input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.typeCard:has(input:focus-visible) {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.typeCardSelected {
+  border-color: var(--color-primary);
+  box-shadow: 0 2px 12px rgba(37, 99, 235, 0.15);
+  transform: translateY(-1px);
+}
+
+.typeCardConsult {
+  border-color: var(--color-topic-consult);
+  background-color: var(--color-topic-consult-light);
+}
+
+.typeCardFeed {
+  border-color: var(--color-topic-feed);
+  background-color: var(--color-topic-feed-light);
+}
+
+.typeCardRequest {
+  border-color: var(--color-topic-request);
+  background-color: var(--color-topic-request-light);
+}
+
+.typeCardEmoji {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.typeCardTitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+
+.typeCardDesc {
+  font-size: 0.7rem;
+  color: var(--color-text-tertiary);
+  line-height: var(--line-height-base);
+}
+
 /* ─── Checkbox ─── */
 
 .checkboxLabel {
@@ -292,6 +373,21 @@
     padding: var(--spacing-5);
     gap: var(--spacing-5);
     border-radius: var(--radius-lg);
+  }
+
+  .typeCardGroup {
+    grid-template-columns: 1fr;
+  }
+
+  .typeCard {
+    flex-direction: row;
+    gap: var(--spacing-3);
+    padding: var(--spacing-3) var(--spacing-4);
+    text-align: left;
+  }
+
+  .typeCardEmoji {
+    font-size: 1.5rem;
   }
 
   .radioGroup {

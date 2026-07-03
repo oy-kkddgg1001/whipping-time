@@ -11,6 +11,12 @@ interface TopicFormProps {
 
 const TOPIC_TYPES: TopicType[] = ['고민상담', '떠먹여 드림', '떠먹여 주세요'];
 
+const TOPIC_TYPE_OPTIONS = [
+  { value: '고민상담' as TopicType, emoji: '💭', description: '함께 고민하고 싶은 주제', activeClass: styles.typeCardConsult },
+  { value: '떠먹여 드림' as TopicType, emoji: '🍰', description: '내가 발표할 주제', activeClass: styles.typeCardFeed },
+  { value: '떠먹여 주세요' as TopicType, emoji: '🙏', description: '누군가에게 부탁하는 주제', activeClass: styles.typeCardRequest },
+];
+
 /**
  * 주제 등록 폼 컴포넌트.
  *
@@ -140,23 +146,28 @@ export function TopicForm({ onSubmit, hasActiveChapter }: TopicFormProps) {
           주제 유형<span className={styles.required} aria-hidden="true">*</span>
         </legend>
         <div
-          className={styles.radioGroup}
+          className={styles.typeCardGroup}
           role="radiogroup"
           aria-required="true"
           aria-invalid={errors.some(e => e.includes('유형'))}
           aria-describedby="type-error"
         >
-          {TOPIC_TYPES.map((topicType) => (
-            <label key={topicType} className={styles.radioLabel}>
+          {TOPIC_TYPE_OPTIONS.map((option) => (
+            <label
+              key={option.value}
+              className={`${styles.typeCard} ${type === option.value ? styles.typeCardSelected : ''} ${type === option.value ? option.activeClass : ''}`}
+            >
               <input
                 type="radio"
                 name="topicType"
-                value={topicType}
-                checked={type === topicType}
+                value={option.value}
+                checked={type === option.value}
                 onChange={(e) => setType(e.target.value as TopicType)}
                 disabled={!hasActiveChapter}
               />
-              {topicType}
+              <span className={styles.typeCardEmoji}>{option.emoji}</span>
+              <span className={styles.typeCardTitle}>{option.value}</span>
+              <span className={styles.typeCardDesc}>{option.description}</span>
             </label>
           ))}
         </div>
