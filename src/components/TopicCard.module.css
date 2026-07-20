@@ -6,7 +6,7 @@
   border-radius: var(--radius-xl);
   background-color: var(--color-surface);
   transition: all var(--transition-fast);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .card::before {
@@ -16,6 +16,7 @@
   left: 0;
   right: 0;
   height: 3px;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
   background: linear-gradient(90deg, var(--color-primary), #4f46e5);
   opacity: 0;
   transition: opacity var(--transition-fast);

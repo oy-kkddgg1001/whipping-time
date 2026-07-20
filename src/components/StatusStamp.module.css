@@ -1,0 +1,116 @@
+/* ─── 상태 없음: 카드 안쪽의 작은 버튼 ─── */
+
+.idle {
+  position: absolute;
+  right: var(--spacing-3);
+  bottom: var(--spacing-3);
+}
+
+.advanceButton {
+  padding: var(--spacing-1) var(--spacing-2);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.advanceButton:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.advanceButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ─── 상태 있음: 카드 밖으로 넘치는 도장 ─── */
+
+.stampWrapper {
+  position: absolute;
+  right: -14px;
+  bottom: -12px;
+  z-index: 1;
+}
+
+@keyframes stampSlam {
+  0% {
+    transform: scale(1.8) rotate(-8deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(0.92) rotate(-8deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(-8deg);
+    opacity: 1;
+  }
+}
+
+.stamp {
+  display: inline-block;
+  padding: var(--spacing-2) var(--spacing-4);
+  border: 3px solid currentColor;
+  border-radius: var(--radius-md);
+  background-color: transparent;
+  font-family: inherit;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transform: rotate(-8deg);
+  animation: stampSlam 280ms ease-out;
+}
+
+.stamp:disabled {
+  cursor: default;
+}
+
+.selected {
+  color: var(--color-info);
+}
+
+.resolved {
+  color: var(--color-success);
+}
+
+.cancelButton {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-strong);
+  background-color: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.cancelButton:hover:not(:disabled) {
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+
+.cancelButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.loginMessage {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  margin-bottom: var(--spacing-1);
+  font-size: var(--font-size-xs);
+  color: var(--color-warning);
+  white-space: nowrap;
+}

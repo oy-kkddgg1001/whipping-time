@@ -36,6 +36,9 @@ export interface Chapter {
 /** 주제의 유형 분류 */
 export type TopicType = '고민상담' | '떠먹여 드림' | '떠먹여 주세요';
 
+/** 주제 처리 상태 (선정완료 → 해결완료 순차 진행) */
+export type TopicStatus = '선정완료' | '해결완료';
+
 // ─── 작성자 정보 (AuthorInfo) ────────────────────────────────────
 
 /** 주제 작성자의 표시 정보 */
@@ -66,6 +69,8 @@ export interface Topic {
   author: AuthorInfo;
   /** 지목 대상 ("떠먹여 주세요" 전용) */
   assignee?: string;
+  /** 처리 상태 (없음 → 선정완료 → 해결완료) */
+  status?: TopicStatus;
   /** 👍 Reaction 수 (0 이상) */
   voteCount: number;
   /** 현재 사용자의 투표 여부 */

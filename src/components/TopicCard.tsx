@@ -2,7 +2,9 @@ import { Link } from 'react-router-dom';
 import type { Topic } from '../types';
 import TopicTypeBadge from './TopicTypeBadge';
 import { VoteButton } from './VoteButton';
+import { StatusStamp } from './StatusStamp';
 import { useVote } from '../hooks/useVote';
+import { useTopicStatus } from '../hooks/useTopicStatus';
 import { useAuth } from '../contexts/AuthContext';
 import styles from './TopicCard.module.css';
 
@@ -24,6 +26,13 @@ export function TopicCard({ topic }: TopicCardProps) {
     topic.voteCount,
     topic.hasVoted,
   );
+  const {
+    status,
+    isLoading: isStatusLoading,
+    canAdvance,
+    advance,
+    cancel,
+  } = useTopicStatus(topic.id, topic.status);
 
   const handleVoteClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -67,6 +76,15 @@ export function TopicCard({ topic }: TopicCardProps) {
           )}
         </div>
       </Link>
+      <StatusStamp
+        status={status}
+        isAuthenticated={isAuthenticated}
+        isLoading={isStatusLoading}
+        canAdvance={canAdvance}
+        onAdvance={advance}
+        onCancel={cancel}
+        topicTitle={topic.title}
+      />
     </article>
   );
 }

@@ -8,6 +8,7 @@
 import type {
   Topic,
   TopicType,
+  TopicStatus,
   TopicFormData,
   DiscussionMetadata,
   GitHubUser,
@@ -115,6 +116,7 @@ export function discussionToTopic(discussion: GitHubDiscussion, chapterId: strin
 
   // labels에서 TopicType 추출 (첫 번째 매칭 사용)
   const type = extractTopicTypeFromLabels(discussion.labels.nodes) ?? metadata.type;
+  const status = extractStatusFromLabels(discussion.labels.nodes);
 
   return {
     id: discussion.id,
@@ -125,6 +127,7 @@ export function discussionToTopic(discussion: GitHubDiscussion, chapterId: strin
     reason: metadata.reason,
     author,
     assignee: metadata.assignee,
+    status,
     voteCount: discussion.reactions.totalCount,
     hasVoted: discussion.reactions.viewerHasReacted,
     createdAt: discussion.createdAt,
@@ -172,4 +175,12 @@ function extractTopicTypeFromLabels(labels: Array<{ name: string }>): TopicType 
     }
   }
   return null;
+}
+
+/** 순차 진행 상태 라벨 (뒷 단계가 우선) — useTopicStatus에서도 동일 라벨명을 사용한다 */
+export const TOPIC_STATUS_LABELS: readonly TopicStatus[] = ['해결완료', '선정완료'];
+
+function extractStatusFromLabels(labels: Array<{ name: string }>): TopicStatus | undefined {
+  const names = new Set(labels.map((label) => label.name));
+  return TOPIC_STATUS_LABELS.find((status) => names.has(status));
 }
