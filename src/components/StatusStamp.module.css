@@ -93,11 +93,26 @@
   line-height: 1;
   cursor: pointer;
   box-shadow: var(--shadow-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+}
+
+.stampWrapper:hover .cancelButton,
+.stampWrapper:focus-within .cancelButton {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .cancelButton:hover:not(:disabled) {
   border-color: var(--color-error);
   color: var(--color-error);
+}
+
+.stampWrapper:hover .cancelButton:disabled,
+.stampWrapper:focus-within .cancelButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .cancelButton:disabled {
