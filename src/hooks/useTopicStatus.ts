@@ -43,8 +43,8 @@ const ADD_COMMENT_MUTATION = `
 `;
 
 interface StatusLabelIds {
-  selected: string;
-  resolved: string;
+  selected: string | null;
+  resolved: string | null;
 }
 
 interface GetStatusLabelIdsResponse {
@@ -67,8 +67,8 @@ function getStatusLabelIds(query: GraphQLQueryFn): Promise<StatusLabelIds> {
       selectedName: SELECTED_LABEL,
       resolvedName: RESOLVED_LABEL,
     }).then((data) => ({
-      selected: data.repository.selectedLabel?.id ?? '',
-      resolved: data.repository.resolvedLabel?.id ?? '',
+      selected: data.repository.selectedLabel?.id ?? null,
+      resolved: data.repository.resolvedLabel?.id ?? null,
     }));
   }
   return statusLabelIdsPromise;
@@ -113,6 +113,11 @@ export function useTopicStatus(
         const previousLabelId = previousStatus === SELECTED_LABEL ? labelIds.selected : previousStatus === RESOLVED_LABEL ? labelIds.resolved : null;
         const nextLabelId = nextStatus === SELECTED_LABEL ? labelIds.selected : nextStatus === RESOLVED_LABEL ? labelIds.resolved : null;
 
+        // 라벨이 저장소에 없으면 조용히 건너뛰지 말고 실패 처리 — 안 그러면 화면엔 찍힌 것처럼 보이다가 새로고침하면 사라진다
+        if (nextStatus && !nextLabelId) {
+          throw new Error(`"${nextStatus}" 라벨이 저장소에 없습니다. GitHub repo에 라벨을 먼저 생성하세요.`);
+        }
+
         if (previousLabelId) {
           await mutate(REMOVE_LABELS_MUTATION, { labelableId: discussionId, labelIds: [previousLabelId] });
         }
@@ -120,8 +125,9 @@ export function useTopicStatus(
           await mutate(ADD_LABELS_MUTATION, { labelableId: discussionId, labelIds: [nextLabelId] });
         }
         await mutate(ADD_COMMENT_MUTATION, { discussionId, body: commentBody });
-      } catch {
+      } catch (err) {
         // 실패 시 롤백
+        console.error('[useTopicStatus] 상태 변경 실패:', err);
         setStatus(previousStatus);
       } finally {
         setIsLoading(false);
