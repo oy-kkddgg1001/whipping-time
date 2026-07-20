@@ -9,8 +9,6 @@ interface TopicFormProps {
   hasActiveChapter: boolean;
 }
 
-const TOPIC_TYPES: TopicType[] = ['고민상담', '떠먹여 드림', '떠먹여 주세요'];
-
 const TOPIC_TYPE_OPTIONS = [
   { value: '고민상담' as TopicType, emoji: '💭', description: '함께 고민하고 싶은 주제', activeClass: styles.typeCardConsult },
   { value: '떠먹여 드림' as TopicType, emoji: '🍰', description: '내가 발표할 주제', activeClass: styles.typeCardFeed },
